@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- bootstrap CSS -->
+    <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+      crossorigin="anonymous"
+    />
+
+
+   <!-- import our own stylesheet -->
+   <link rel="stylesheet" href="../static/style.css">
+</head>
+<body class="all">
+  
+  <div class="container mt-3">
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <h1 class="text-center bg-light">Welcome {{session["first_name"]}}</h1>
+        <div class="d-flex gap-5" role="search">
+          <a href="/create" class="btn btn-primary">New Patient</a>
+          <a href="/logout" class="btn btn-success">Logout</a>
+        </div>
+      </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+      
+        <h2 class="text-dark mt-5 bg-light">Patients Dashboard</h2>
+         
+  </nav>
+    <table class="table table-striped-columns table-hover bg-light">
+      <thead class="top">
+        <tr>
+          <th>Name</th>
+          <th>Medical Condition</th>
+          <th>Care Provider</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for patient in patients %}
+        <tr>
+          <td>{{patient.first_name}} {{patient.last_name}} </td>
+          <td>{{patient.medical_condition}}</td>
+          <td>{{patient.doctor.first_name}} {{patient.doctor.last_name}}</td>
+
+          {% if patient.provider_id == session["provider_id"] %}
+          <td>
+            <a href="/patients/{{patient.id}}">View</a> |
+            <a href="/patients/edit/{{patient.id}}"> Edit</a> |
+            <a href="/patient/{{patient.id}}/destroy">Delete</a>
+          </td>
+          {% else %}
+          <td>
+            <a href="/patients/{{patient.id}}">View</a>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+    <!-- bootstrap javascript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+    ></script>
+</body>
+</html>

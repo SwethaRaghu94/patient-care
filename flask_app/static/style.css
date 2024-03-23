@@ -1,0 +1,33 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.background-image {
+    background-image: url(./images/patient-care-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.all {
+    background-image: url(./images/all_page.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.patient-care {
+    background-image: url(./images/edit.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.start {
+    background-image: url(./images/main.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

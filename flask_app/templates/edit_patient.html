@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+   <!-- bootstrap CSS -->
+   <link 
+   rel="stylesheet" 
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+   integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+   crossorigin="anonymous"
+ />
+
+
+  <!-- import our own stylesheet -->
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='/style.css') }}"
+    />
+</head>
+
+<body>
+   
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+    <div class="container-fluid">
+      <h1 class="text-light">Edit Patient Information</h1>
+      <div class="d-flex" role="search">
+        <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+        <a href="/logout" class="btn btn-success">Logout</a>
+      </div>
+    </div>
+  </nav>
+  {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              {% for message in messages %}
+                  <div class="alert alert-danger" role="alert">
+                    <p>{{message}}</p>
+                  </div>
+              {% endfor %}
+          {% endif %}
+          {% endwith %}
+  <form action="/patients/edit/{{patient.id}}" method="post">
+    <input type="hidden" name="id" value="{{patient.id}}"/>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mt-5 text-dark p-3 mb-2 patient-care">
+        <div class="container-fluid">
+            <div class="form-floating">
+                <label for="first_name">First Name:</label>
+                <input type="text small-placeholder" name="first_name" id="first_name" value="{{patient.first_name}}">
+            </div>
+            <div class="form-floating">
+              <label for="last_name">Last Name:</label>
+              <input type="text" name="last_name" id="last_name" value="{{patient.last_name}}">
+            </div>
+            <div class="form-floating">
+              <label for="email">Email:</label>
+              <input type="text" name="email" id="email" value="{{patient.email}}">
+            </div>
+            <div class="form-floating">
+                <label for="age">Age:</label>
+                <input type="number" name="age" id="age" min=0 max=100 value="{{patient.age}}">
+            </div>
+            <div class="form-group">
+  
+              <select class="form-control" id="language" name="language">
+                  <option value="" disabled selected {% if not patient.language %}selected{% endif %}>Language</option>
+                  <option value="English" {% if patient.language == "English" %}selected{% endif %}>English</option>
+                  <option value="Spanish" {% if patient.language == 'Spanish' %}selected{% endif %} >Spanish</option>
+              </select>
+            </div>
+            <div class="form-group">
+  
+              <select class="form-control" id="gender" name="gender" value="{{patient.gender}}">
+                  <option value="" disabled selected {% if not patient.gender %}selected{% endif %}>Gender</option>
+                  <option value="Male" {% if patient.gender == "Male" %}selected{% endif %}>Male</option>
+                  <option value="Female" {% if patient.gender == "Female" %}selected{% endif %}>Female</option>
+                  <option value="Prefer not to answer" {% if patient.gender == "Prefer not to answer" %}selected{% endif %}>Prefer Not to answer</option>
+              </select>
+            </div>
+            <div class="form-group">
+  
+              <select class="form-control" id="insurance" name="insurance" value="{{patient.insurance}}">
+                  <option value="" disabled selected {% if not patient.insurance %}selected{% endif %}>Insurance</option>
+                  <option value="Atna" {% if patient.insurance == "Atna" %}selected{% endif %}>Atna</option>
+                  <option value="Molina" {% if patient.insurance == "Molina" %}selected{% endif %}>Molina</option>
+                  <option value="Blue" {% if patient.insurance == "Blue" %}selected{% endif %}>Blue</option>
+              </select>
+            </div>
+              <div class="form-group">
+                <label for="date_enrolled">Date Enrolled:</label>
+                <input type="date" name="date_enrolled" id="date_enrolled" class="form-floating" value="{{patient.date_enrolled}}">
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+      <div class="form-group">
+          <label for="medical_condition">Medical Condition:</label>
+            <input type="text" name="medical_condition" id="medical_condition" class="form-control " value="{{patient.medical_condition}}">
+      </div>
+      <div class="form-group">
+        <label for="symptoms">Symptoms</label>
+          <input type="textarea" name="symptoms" id="floatingTextarea2Disabled" style="height: 100px" class="form-control" value="{{patient.symptoms}}">
+      </div>
+      <div class="form-floating mb-3">
+        <label for="goals">Goals:</label>
+          <input type="textarea" name="goals" id="floatingTextarea2Disabled" style="height: 100px" class="form-control" value="{{patient.goals}}">
+      </div>
+      <div class="form-floating mb-3">
+        <label for="barriers">Barriers:</label>
+          <input type="textarea" name="barriers" id="floatingTextarea2Disabled" style="height: 100px" class="form-control" value="{{patient.barriers}}">
+      </div>
+      <div class="form-floating mb-3">
+        <label for="expected_results">Expected Results:</label>
+          <input type="textarea" name="expected_results" id="floatingTextarea2Disabled" style="height: 100px" class="form-control" value="{{patient.expected_results}}">
+      </div>
+      <input type="submit" value="Submit" class="btn btn-success absolute-bottom-right">
+    </div>
+  </form>
+
+
+
+
+
+
+
+
+
+
+  <!-- bootstrap javascript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

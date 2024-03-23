@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- bootstrap CSS -->
+    <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+      crossorigin="anonymous"
+    />
+
+
+   <!-- import our own stylesheet -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='/style.css') }}"
+    />
+</head>
+<body>
+  <div class="fluid container mt-5">
+    <h1 class="text-center text-info bg-light fw-semibold">Patient Care Management</h1>
+    <h2 class="text-primary text-center font-monospace">Register as a Care Provider</h2>
+
+    <div class="row d-flex justify-content-around flex-wrap p-5 start">
+        <form action="/register" method="post" class="p-3 col-4 mx-auto my-5 border border-black text-dark bg-light">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div  class="alert {{ 'alert-success' if category == 'success' else 'alert-danger' }}" role="alert">
+                        <p>{{message}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <h2 class="text-center text-primary">Register:</h2>
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" id="first_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" id="last_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm PW:</label>
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control">
+            </div>
+                <input type="submit" value="Register" class="btn btn-primary">
+        </form>
+        <form action="/login" method="post" class="p-3 col-4 mx-auto my-5 border border-black text-dark bg-light">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        <p>{{message}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <h2 class="text-center text-success">Login:</h2>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <input type="submit" value="Login" class="btn btn-success">
+        </form>
+    </div>
+</div>
+
+
+
+
+    <!-- bootstrap javascript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+    ></script>
+</body>
+</html>

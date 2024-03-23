@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <!-- bootstrap CSS -->
+    <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+      crossorigin="anonymous"
+    />
+
+
+   <!-- import our own stylesheet -->
+   <link rel="stylesheet" href="../static/style.css">
+</head>
+<body class="patient-care">
+
+  <div class="container mt-3">
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <h1 class="text-center bg-primary">Welcome {{session["first_name"]}}</h1> 
+            <div class="d-flex gap-5" role="search">
+                <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+                <a href="/logout" class="btn btn-success">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+        
+          <h2 class="text-dark mt-5 bg-light">{{patient.first_name}} {{patient.last_name}} </h2>
+            <span class="text mt-5 bg-light">
+              Care Provider:{{patient.doctor.first_name}} {{patient.doctor.last_name}}
+            </span>
+    </nav>
+        
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Medical Condition:</p>
+                  <p>Age</p>
+                  <p>Gender:</p>
+                  <p>Expected Results:</p>
+                  <p>Date Enrolled:</p>
+                </div>
+                <div class="col-md-6">
+                  <p>{{patient.medical_condition}}</p>
+                  <p>{{patient.age}}</p>
+                  <p>{{patient.gender}}</p>
+                  <p>{{patient.expected_results}}</p>
+                  <p>{{patient.date_enrolled}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+      
+    
+
+    
+
+    <!-- bootstrap javascript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+    ></script>
+</body>
+</html>
